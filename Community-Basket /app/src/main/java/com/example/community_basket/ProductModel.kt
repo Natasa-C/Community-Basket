@@ -3,7 +3,7 @@ package com.example.community_basket
 import android.os.Parcel
 import android.os.Parcelable
 
-data class MovieModel(
+data class ProductModel(
     val title: String?, val duration: String?, val imageId: Int
 ) : Parcelable {
 
@@ -28,12 +28,12 @@ data class MovieModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<MovieModel> {
-        override fun createFromParcel(parcel: Parcel): MovieModel {
-            return MovieModel(parcel)
+    companion object CREATOR : Parcelable.Creator<ProductModel> {
+        override fun createFromParcel(parcel: Parcel): ProductModel {
+            return ProductModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<MovieModel?> {
+        override fun newArray(size: Int): Array<ProductModel?> {
             return arrayOfNulls(size)
         }
     }

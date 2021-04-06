@@ -8,16 +8,15 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.community_basket.R
 
 class CustomAdapter(
-    private val localDataSet: List<MovieModel>,
+    private val localDataSet: List<ProductModel>,
     private val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<CustomAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.movie_item, parent, false)
+            .inflate(R.layout.product_item, parent, false)
         return MovieViewHolder(view)
     }
 
@@ -30,14 +29,14 @@ class CustomAdapter(
     }
 
     inner class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val title: TextView = view.findViewById(R.id.movie_title)
-        private val duration: TextView = view.findViewById(R.id.tv_duration)
-        private val movieImage: ImageView = view.findViewById(R.id.iv_picture)
+        private val title: TextView = view.findViewById(R.id.product_name)
+        private val duration: TextView = view.findViewById(R.id.product_location)
+        private val movieImage: ImageView = view.findViewById(R.id.iv_product_image)
         private val layout: ConstraintLayout = view.findViewById(R.id.container)
 
 //        onclicklistener here
 
-        fun bind(item: MovieModel, position: Int) {
+        fun bind(item: ProductModel, position: Int) {
             title.text = item.title
             duration.text = item.duration
             movieImage.setImageDrawable(

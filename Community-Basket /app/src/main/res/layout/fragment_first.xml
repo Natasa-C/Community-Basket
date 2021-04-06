@@ -13,7 +13,7 @@
         android:padding="4sp"
         android:layout_above="@id/buttons"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/movie_item" />
+        tools:listitem="@layout/product_item" />
 
     <LinearLayout
         android:id="@+id/buttons"

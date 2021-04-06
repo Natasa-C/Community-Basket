@@ -28,11 +28,11 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <ImageView
-            android:id="@+id/iv_clock"
+            android:id="@+id/location_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/iv_clock"
+            android:src="@drawable/location_icon"
             />
 
         <TextView
@@ -43,7 +43,7 @@
             android:textSize="25sp"
             tools:text="149min"
 
-            app:layout_constraintStart_toEndOf="@id/iv_clock"
+            app:layout_constraintStart_toEndOf="@id/location_icon"
             />
 
 

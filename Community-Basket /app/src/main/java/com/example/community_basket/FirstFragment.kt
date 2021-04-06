@@ -37,7 +37,7 @@ class FirstFragment : Fragment(R.layout.fragment_first), OnItemClickListener {
         binding.recyclerView.adapter = adapter
         binding.insertButton.setOnClickListener {
             val index = 0
-            val newItem = MovieModel("New item", "$index", R.drawable.iv_picture)
+            val newItem = ProductModel("New item", "$index", R.drawable.iv_product_image)
 
             movieList.add(index, newItem)
             adapter.notifyItemInserted(index)
@@ -55,22 +55,22 @@ class FirstFragment : Fragment(R.layout.fragment_first), OnItemClickListener {
         _binding = null
     }
 
-    private fun generateDummyList(size: Int): MutableList<MovieModel> {
-        val list: MutableList<MovieModel> = ArrayList()
+    private fun generateDummyList(size: Int): MutableList<ProductModel> {
+        val list: MutableList<ProductModel> = ArrayList()
 
         for (i in 0 until size) {
             val imageId = when (i % 3) {
-                0 -> R.drawable.iv_picture
-                1 -> R.drawable.iv_picture
-                else -> R.drawable.iv_picture
+                0 -> R.drawable.iv_product_image
+                1 -> R.drawable.iv_product_image
+                else -> R.drawable.iv_product_image
             }
-            val item = MovieModel("Item $i", "$i", imageId)
+            val item = ProductModel("Item $i", "Pitesti, Arges $i", imageId)
             list += item
         }
         return list
     }
 
-    override fun onItemClick(item: MovieModel) {
+    override fun onItemClick(item: ProductModel) {
 //        Toast.makeText(getContext(), "${item.title} clicked", Toast.LENGTH_SHORT).show()
 
         val bundle = Bundle()

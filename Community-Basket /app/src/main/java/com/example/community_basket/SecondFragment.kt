@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.community_basket.databinding.FragmentSecondBinding
-import com.example.community_basket.R
 
 
 class SecondFragment : Fragment(R.layout.fragment_second) {
@@ -45,7 +44,7 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
             val title = bundle.getString(FirstFragment.MOVIE_TITLE)
             dataBinding.movieTitleFragment.text = title
 //            (view.findViewById(R.id.movie_title_fragment) as TextView).text = title
-            val movie: MovieModel? = bundle.getParcelable(FirstFragment.MOVIE)
+            val movie: ProductModel? = bundle.getParcelable(FirstFragment.MOVIE)
             if (movie != null) {
                 dataBinding.movieTitleFragment.text = movie.title
                 dataBinding.tvDuration.text = movie.duration
