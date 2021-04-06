@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.community_basket.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
@@ -15,35 +17,37 @@ class SecondActivity : AppCompatActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadData()
+        setupActionBarWithNavController(findNavController(R.id.list_fragment))
 
-        binding.btSave.setOnClickListener {
-            saveData()
-        }
+//        loadData()
+//
+//        binding.btSave.setOnClickListener {
+//            saveData()
+//        }
     }
-
-    private fun saveData() {
-        val insertedText = binding.tvEdit.toString()
-        binding.tvFromPreferences.text = insertedText
-
-        val sharedPreferences = getSharedPreferences("firstSharedPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-
-        editor.apply {
-            putString("STRING_KEY", insertedText)
-            putBoolean("BOOLEAN_KEY", binding.switch1.isChecked)
-        }.apply()
-
-        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun loadData() {
-        val sharedPreferences = getSharedPreferences("firstSharedPrefs", Context.MODE_PRIVATE)
-        val savedString = sharedPreferences.getString("STRING_KEY", null)
-        val savedBoolean = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
-
-        binding.tvFromPreferences.text = savedString
-        binding.switch1.isChecked = savedBoolean
-    }
+//
+//    private fun saveData() {
+//        val insertedText = binding.tvEdit.toString()
+//        binding.tvFromPreferences.text = insertedText
+//
+//        val sharedPreferences = getSharedPreferences("firstSharedPrefs", Context.MODE_PRIVATE)
+//        val editor = sharedPreferences.edit()
+//
+//        editor.apply {
+//            putString("STRING_KEY", insertedText)
+//            putBoolean("BOOLEAN_KEY", binding.switch1.isChecked)
+//        }.apply()
+//
+//        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show()
+//    }
+//
+//    private fun loadData() {
+//        val sharedPreferences = getSharedPreferences("firstSharedPrefs", Context.MODE_PRIVATE)
+//        val savedString = sharedPreferences.getString("STRING_KEY", null)
+//        val savedBoolean = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
+//
+//        binding.tvFromPreferences.text = savedString
+//        binding.switch1.isChecked = savedBoolean
+//    }
 
 }
