@@ -37,7 +37,13 @@ class FirstFragment : Fragment(R.layout.fragment_first), OnItemClickListener {
         binding.recyclerView.adapter = adapter
         binding.insertButton.setOnClickListener {
             val index = 0
-            val newItem = ProductModel("New item", "$index", R.drawable.iv_product_image)
+            val newItem = ProductModel(
+                "New item",
+                "Topoloveni, Arges",
+                "$index".toFloat(),
+                "kg",
+                R.drawable.iv_product_image
+            )
 
             movieList.add(index, newItem)
             adapter.notifyItemInserted(index)
@@ -64,7 +70,7 @@ class FirstFragment : Fragment(R.layout.fragment_first), OnItemClickListener {
                 1 -> R.drawable.iv_product_image
                 else -> R.drawable.iv_product_image
             }
-            val item = ProductModel("Item $i", "Pitesti, Arges $i", imageId)
+            val item = ProductModel("Item $i", "Pitesti, Arges", "$i".toFloat(), "buc", imageId)
             list += item
         }
         return list
@@ -74,7 +80,7 @@ class FirstFragment : Fragment(R.layout.fragment_first), OnItemClickListener {
 //        Toast.makeText(getContext(), "${item.title} clicked", Toast.LENGTH_SHORT).show()
 
         val bundle = Bundle()
-        bundle.putString(MOVIE_TITLE, item.title)
+        bundle.putString(MOVIE_TITLE, item.product_name)
         bundle.putParcelable(MOVIE, item)
 
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager

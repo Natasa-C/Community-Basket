@@ -46,8 +46,8 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
 //            (view.findViewById(R.id.movie_title_fragment) as TextView).text = title
             val movie: ProductModel? = bundle.getParcelable(FirstFragment.MOVIE)
             if (movie != null) {
-                dataBinding.movieTitleFragment.text = movie.title
-                dataBinding.tvDuration.text = movie.duration
+                dataBinding.movieTitleFragment.text = movie.product_name
+                dataBinding.tvDuration.text = movie.product_location
                 dataBinding.imageView.setImageDrawable(
                     ContextCompat.getDrawable(
                         dataBinding.imageView.context,

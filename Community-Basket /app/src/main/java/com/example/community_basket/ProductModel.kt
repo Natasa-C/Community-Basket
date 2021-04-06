@@ -4,11 +4,17 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class ProductModel(
-    val title: String?, val duration: String?, val imageId: Int
+    val product_name: String?,
+    val product_location: String?,
+    val product_price: Float,
+    val product_unit: String?,
+    val imageId: Int
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
+        parcel.readString(),
+        parcel.readFloat(),
         parcel.readString(),
         parcel.readInt()
     ) {
@@ -17,8 +23,10 @@ data class ProductModel(
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest!!.writeStringArray(
             arrayOf(
-                title,
-                duration,
+                product_name,
+                product_location,
+                product_price.toString(),
+                product_unit,
                 imageId.toString()
             )
         )

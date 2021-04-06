@@ -75,6 +75,7 @@
         android:layout_marginStart="10dp" />
 
     <TextView
+        android:id="@+id/product_unit"
         android:layout_width="62dp"
         android:layout_height="wrap_content"
         android:textSize="15sp"

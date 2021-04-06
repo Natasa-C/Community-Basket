@@ -29,16 +29,20 @@ class CustomAdapter(
     }
 
     inner class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val title: TextView = view.findViewById(R.id.product_name)
-        private val duration: TextView = view.findViewById(R.id.product_location)
+        private val productName: TextView = view.findViewById(R.id.product_name)
+        private val productLocation: TextView = view.findViewById(R.id.product_location)
+        private val productPrice: TextView = view.findViewById(R.id.product_price)
+        private val productUnit: TextView = view.findViewById(R.id.product_unit)
         private val movieImage: ImageView = view.findViewById(R.id.iv_product_image)
         private val layout: ConstraintLayout = view.findViewById(R.id.container)
 
 //        onclicklistener here
 
         fun bind(item: ProductModel, position: Int) {
-            title.text = item.title
-            duration.text = item.duration
+            productName.text = item.product_name
+            productLocation.text = item.product_location
+            productPrice.text = item.product_price.toString()
+            productUnit.text = "lei/" + item.product_unit
             movieImage.setImageDrawable(
                 ContextCompat.getDrawable(
                     movieImage.getContext(),
