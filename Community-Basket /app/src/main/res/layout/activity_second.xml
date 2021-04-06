@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_from_preferences"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="48dp"
+        android:textSize="25sp"
+        android:layout_marginTop="20sp"/>
+
+    <TextView
+        android:id="@+id/tv_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="89dp"
+        android:textSize="25sp"
+        android:layout_marginTop="20sp"/>
+
+    <Button
+        android:id="@+id/bt_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="136dp"
+        android:textSize="25sp"
+        android:layout_marginTop="20sp"/>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="202dp"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+</LinearLayout>

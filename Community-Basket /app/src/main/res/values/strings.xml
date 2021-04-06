@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Community-Basket</string>
+    <string name="hello_name">Hello Me!</string>
+    <string name="click_me">Click me!</string>
+    <string name="textview">Alt view</string>
+    <string name="hello">Ai trimis textul</string>
+    <string name="remove_item">Remove item</string>
+    <string name="insert_item">Insert item</string>
+    <string name="movieTitle">TextView</string>
+    <string name="channel_name">Channel name</string>
+    <string name="save">SAVE</string>
+    <string name="go_to_second_activity">Go to second activity</string>
 </resources>
