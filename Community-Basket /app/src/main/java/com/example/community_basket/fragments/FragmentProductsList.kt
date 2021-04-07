@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.community_basket.ProductModel
 import com.example.community_basket.R
-import com.example.community_basket.data.ProductViewModel
+import com.example.community_basket.viewmodel.ProductViewModel
 import kotlinx.android.synthetic.main.fragment_products_list.view.*
 
 class FragmentProductsList : Fragment() {
@@ -29,11 +29,7 @@ class FragmentProductsList : Fragment() {
 
         mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
         mProductViewModel.readAllData.observe(viewLifecycleOwner, Observer {products ->
-            val productList = products.map {
-                ProductModel(it.name, it.location,it.price, it.unit, R.drawable.iv_product_image)
-            }
-
-            adapter.setData(productList)
+            adapter.setData(products)
         })
 
         view.floatingActionButton.setOnClickListener {

@@ -10,11 +10,11 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.community_basket.R
-import com.example.community_basket.data.Product
-import com.example.community_basket.data.ProductViewModel
+import com.example.community_basket.model.Product
+import com.example.community_basket.viewmodel.ProductViewModel
 import kotlinx.android.synthetic.main.fragment_products_add.*
 import kotlinx.android.synthetic.main.fragment_products_add.view.*
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_second.*
 
 
 class FragmentProductsAdd : Fragment() {
@@ -41,10 +41,18 @@ class FragmentProductsAdd : Fragment() {
         val location = et_product_location.text.toString()
         val price = et_product_price.text.toString()
         val unit = et_product_unit.text.toString()
+        val imageId = et_product_image.text.toString()
 
-        if (inputCheck(name, location, price, unit)) {
+        if (inputCheck(name, location, price, unit, imageId)) {
             // create Product Object
-            val product = Product(0, name, location, price.toFloat(), unit)
+            val product = Product(
+                0,
+                name,
+                location,
+                price.toFloat(),
+                unit,
+                resources.getIdentifier(imageId, "drawable", context?.packageName)
+            )
 
             // add data to the database
             mProductViewModel.addProduct(product)
@@ -57,10 +65,15 @@ class FragmentProductsAdd : Fragment() {
         }
     }
 
-    private fun inputCheck(name: String, location: String, price: String, unit: String): Boolean {
+    private fun inputCheck(
+        name: String,
+        location: String,
+        price: String,
+        unit: String,
+        imageId: String
+    ): Boolean {
         return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(location) || TextUtils.isEmpty(unit) || TextUtils.isEmpty(
-            price
-        ))
+            price) || TextUtils.isEmpty(imageId))
     }
 
 }

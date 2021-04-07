@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FragmentProductsAdd"
+    tools:context=".fragments.FragmentProductsUpdate"
     android:orientation="vertical"
     android:padding="20sp">
 
     <EditText
-        android:id="@+id/et_product_name"
+        android:id="@+id/et_update_product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -19,7 +19,7 @@
         android:hint="name" />
 
     <EditText
-        android:id="@+id/et_product_location"
+        android:id="@+id/et_update_product_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -30,7 +30,7 @@
         android:hint="location" />
 
     <EditText
-        android:id="@+id/et_product_price"
+        android:id="@+id/et_update_product_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -41,7 +41,7 @@
         android:hint="price" />
 
     <EditText
-        android:id="@+id/et_product_unit"
+        android:id="@+id/et_update_product_unit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -52,7 +52,7 @@
         android:hint="unit (buc, kg, leg)" />
 
     <EditText
-        android:id="@+id/et_product_image"
+        android:id="@+id/et_update_product_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -63,12 +63,12 @@
         android:hint="iv_picture" />
 
     <Button
-        android:id="@+id/add_product_button"
+        android:id="@+id/update_product_button"
         android:layout_width="273dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32sp"
         android:layout_gravity="center"
-        android:text="ADD PRODUCT"
+        android:text="UPDATE"
         android:textSize="25sp"
         android:textStyle="bold" />
 

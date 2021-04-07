@@ -5,14 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.ListFragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.community_basket.ProductModel
 import com.example.community_basket.R
+import com.example.community_basket.model.Product
 
 class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
-    private var productList = emptyList<ProductModel>()
+    private var productList = emptyList<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(
@@ -37,15 +41,21 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
         private val movieImage: ImageView = view.findViewById(R.id.iv_product_image)
         private val layout: ConstraintLayout = view.findViewById(R.id.container)
 
-        fun bind(item: ProductModel) {
-            productName.text = item.product_name
-            productLocation.text = item.product_location
-            productPrice.text = item.product_price.toString()
-            productUnit.text = "lei/" + item.product_unit
+        fun bind(item: Product) {
+            var image = R.drawable.iv_product_image
+            if (item.imageId.toString() != "0") {
+                image = item.imageId!!
+            }
+
+
+            productName.text = item.name
+            productLocation.text = item.location
+            productPrice.text = item.price.toString()
+            productUnit.text = "lei/" + item.unit
             movieImage.setImageDrawable(
                 ContextCompat.getDrawable(
-                    movieImage.getContext(),
-                    item.imageId
+                    movieImage.context,
+                    image
                 )
             )
 
@@ -54,14 +64,17 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
 //                layout.setBackgroundColor(Color.YELLOW)
 //            }
 
-//            layout.setOnClickListener {
+            layout.setOnClickListener {
 //                itemClickListener.onItemClick(item)
-//            }
+                val action =
+                    FragmentProductsListDirections.actionFragmentProductsListToFragmentProductsUpdate2(item)
+                itemView.findNavController().navigate(action)
+            }
         }
 
     }
 
-    fun setData(products: List<ProductModel>){
+    fun setData(products: List<Product>) {
         this.productList = products
         notifyDataSetChanged()
     }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fragmentProductsList_to_fragmentProductsAdd2"
             app:destination="@id/fragmentProductsAdd" />
+        <action
+            android:id="@+id/action_fragmentProductsList_to_fragmentProductsUpdate2"
+            app:destination="@id/fragmentProductsUpdate2" />
     </fragment>
     <fragment
         android:id="@+id/fragmentProductsAdd"
@@ -22,5 +25,17 @@
         <action
             android:id="@+id/action_fragmentProductsAdd_to_fragmentProductsList"
             app:destination="@id/fragmentProductsList" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentProductsUpdate2"
+        android:name="com.example.community_basket.fragments.FragmentProductsUpdate"
+        android:label="Update"
+        tools:layout="@layout/fragment_products_update" >
+        <action
+            android:id="@+id/action_fragmentProductsUpdate2_to_fragmentProductsList"
+            app:destination="@id/fragmentProductsList" />
+        <argument
+            android:name="currentProduct"
+            app:argType="com.example.community_basket.model.Product" />
     </fragment>
 </navigation>

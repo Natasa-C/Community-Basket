@@ -2,11 +2,15 @@ package com.example.community_basket.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.community_basket.model.Product
 
 @Dao
 interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addProduct(product: Product)
+
+    @Update
+    suspend fun updateProduct(product: Product)
 
     //
 //    @Update
