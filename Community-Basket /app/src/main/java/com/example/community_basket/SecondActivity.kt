@@ -1,8 +1,6 @@
 package com.example.community_basket
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -19,35 +17,11 @@ class SecondActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(findNavController(R.id.list_fragment))
 
-//        loadData()
-//
-//        binding.btSave.setOnClickListener {
-//            saveData()
-//        }
     }
-//
-//    private fun saveData() {
-//        val insertedText = binding.tvEdit.toString()
-//        binding.tvFromPreferences.text = insertedText
-//
-//        val sharedPreferences = getSharedPreferences("firstSharedPrefs", Context.MODE_PRIVATE)
-//        val editor = sharedPreferences.edit()
-//
-//        editor.apply {
-//            putString("STRING_KEY", insertedText)
-//            putBoolean("BOOLEAN_KEY", binding.switch1.isChecked)
-//        }.apply()
-//
-//        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show()
-//    }
-//
-//    private fun loadData() {
-//        val sharedPreferences = getSharedPreferences("firstSharedPrefs", Context.MODE_PRIVATE)
-//        val savedString = sharedPreferences.getString("STRING_KEY", null)
-//        val savedBoolean = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
-//
-//        binding.tvFromPreferences.text = savedString
-//        binding.switch1.isChecked = savedBoolean
-//    }
 
+    // back arrow add product
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.list_fragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }
