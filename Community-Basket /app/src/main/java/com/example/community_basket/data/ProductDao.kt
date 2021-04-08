@@ -12,6 +12,9 @@ interface ProductDao {
     @Update
     suspend fun updateProduct(product: Product)
 
+    @Delete
+    suspend fun deleteProduct(product: Product)
+
     //
 //    @Update
 //    fun updateUsers(vararg users: User?)
@@ -23,6 +26,9 @@ interface ProductDao {
 //
     @Query("SELECT * FROM products ORDER BY id ASC")
     fun readAllData(): LiveData<List<Product>>
+
+    @Query("DELETE FROM products")
+    suspend fun deleteAll()
 //
 //    @Query("SELECT firstName FROM user")
 //    fun loadFirstName(): List<String?>?

@@ -1,11 +1,10 @@
 package com.example.community_basket.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -46,6 +45,9 @@ class FragmentProductsUpdate : Fragment() {
         view.update_product_button.setOnClickListener {
             updateItem()
         }
+
+        // Add menu
+        setHasOptionsMenu(true)
 
         return view
     }
@@ -91,4 +93,37 @@ class FragmentProductsUpdate : Fragment() {
         ) || TextUtils.isEmpty(imageId))
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_delete) {
+            deleteProduct()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteProduct() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes") { _, _ ->
+            mProductViewModel.deleteProduct(args.currentProduct)
+            Toast.makeText(
+                requireContext(),
+                "Successfully removed: ${args.currentProduct.name}",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            findNavController().navigate(R.id.action_fragmentProductsUpdate2_to_fragmentProductsList)
+        }
+        builder.setNegativeButton("No") { _, _ -> }
+        builder.setTitle("Delete ${args.currentProduct.name}?")
+        builder.setMessage("Are you sure you want to delete ${args.currentProduct.name}?")
+        builder.create().show()
+    }
 }
+
+
+
+
+
