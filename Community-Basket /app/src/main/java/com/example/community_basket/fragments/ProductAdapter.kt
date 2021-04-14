@@ -42,7 +42,7 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
         private val layout: ConstraintLayout = view.findViewById(R.id.container)
 
         fun bind(item: Product) {
-            var image = R.drawable.iv_product_image
+            var image = R.drawable.iv_unknown
             if (item.imageId.toString() != "0") {
                 image = item.imageId!!
             }

@@ -30,6 +30,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:textSize="18sp"
+        android:maxLength="16"
+        android:maxLines="1"
+        android:maxWidth="185sp"
 
         app:layout_constraintBottom_toTopOf="@id/location_icon"
         app:layout_constraintStart_toEndOf="@id/iv_product_image"
@@ -57,7 +60,10 @@
         app:layout_constraintBottom_toBottomOf="@id/location_icon"
         app:layout_constraintStart_toEndOf="@id/location_icon"
         app:layout_constraintTop_toTopOf="@id/location_icon"
-        tools:text="149min" />
+        tools:text="location"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:maxWidth="140sp"/>
 
     <TextView
         android:id="@+id/product_price"
