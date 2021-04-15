@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.community_basket.ProductModel
 import com.example.community_basket.R
 import com.example.community_basket.viewmodel.ProductViewModel
 import kotlinx.android.synthetic.main.fragment_products_list.view.*

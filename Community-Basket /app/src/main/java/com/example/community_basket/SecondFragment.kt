@@ -20,44 +20,44 @@ import com.example.community_basket.databinding.FragmentSecondBinding
 class SecondFragment : Fragment(R.layout.fragment_second) {
     private var CHANNEL_ID = "channel"
     private lateinit var dataBinding: FragmentSecondBinding
-
-    override fun onCreateView(
-        @NonNull inflater: LayoutInflater,
-        @Nullable container: ViewGroup?,
-        @Nullable savedInstanceState: Bundle?
-    ): View? {
-        dataBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_second,
-            container,
-            false
-        )
-        return dataBinding.root
-    }
-
-
-    override fun onViewCreated(view: View, @Nullable savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val bundle = this.arguments
-        if (bundle != null) {
-            val title = bundle.getString(FirstFragment.MOVIE_TITLE)
-            dataBinding.movieTitleFragment.text = title
-//            (view.findViewById(R.id.movie_title_fragment) as TextView).text = title
-            val movie: ProductModel? = bundle.getParcelable(FirstFragment.MOVIE)
-            if (movie != null) {
-                dataBinding.movieTitleFragment.text = movie.product_name
-                dataBinding.tvDuration.text = movie.product_location
-                dataBinding.imageView.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        dataBinding.imageView.context,
-                        movie.imageId
-                    )
-                )
-            }
-            createNotif()
-        }
-    }
+//
+//    override fun onCreateView(
+//        @NonNull inflater: LayoutInflater,
+//        @Nullable container: ViewGroup?,
+//        @Nullable savedInstanceState: Bundle?
+//    ): View? {
+//        dataBinding = DataBindingUtil.inflate(
+//            inflater,
+//            R.layout.fragment_second,
+//            container,
+//            false
+//        )
+//        return dataBinding.root
+//    }
+//
+//
+//    override fun onViewCreated(view: View, @Nullable savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//        val bundle = this.arguments
+//        if (bundle != null) {
+//            val title = bundle.getString(FirstFragment.MOVIE_TITLE)
+//            dataBinding.movieTitleFragment.text = title
+////            (view.findViewById(R.id.movie_title_fragment) as TextView).text = title
+//            val movie: ProductModel? = bundle.getParcelable(FirstFragment.MOVIE)
+//            if (movie != null) {
+//                dataBinding.movieTitleFragment.text = movie.product_name
+//                dataBinding.tvDuration.text = movie.product_location
+//                dataBinding.imageView.setImageDrawable(
+//                    ContextCompat.getDrawable(
+//                        dataBinding.imageView.context,
+//                        movie.imageId
+//                    )
+//                )
+//            }
+//            createNotif()
+//        }
+//    }
 
     private fun createNotif() {
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
