@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         val email = sharedPreferences.getString("EMAIL_KEY", null)
         val password = sharedPreferences.getString("PASSWORD_KEY", null)
 
-        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && email.equals(emailLogin) && password.equals(passwordLogin)){
+        if (email.equals(emailLogin) && password.equals(passwordLogin)){
             editor.apply {
                 putBoolean("LOGGED_IN", true)
             }.apply()

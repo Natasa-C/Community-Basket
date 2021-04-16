@@ -1,5 +1,6 @@
 package com.example.community_basket.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -44,6 +45,20 @@ class MainActivity : AppCompatActivity() {
             }
 
             true
+        }
+
+        binding.btLogout.setOnClickListener() {
+            val sharedPreferences = getSharedPreferences("AuthenticationPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+
+            editor.apply {
+                putBoolean("LOGGED_IN", false)
+            }.apply()
+
+            Toast.makeText(this, "User logged out!", Toast.LENGTH_LONG).show()
+
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
 //        binding.btActivitySecond.setOnClickListener {
