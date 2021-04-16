@@ -17,4 +17,7 @@
     <string name="login">login</string>
     <string name="logout">logout</string>
     <string name="register">register</string>
+    // Facebook login
+    <string name="facebook_app_id">747163672611360</string>
+    <string name="fb_login_protocol_scheme">fb747163672611360</string>
 </resources>

@@ -9,6 +9,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.community_basket.R
 import com.example.community_basket.databinding.ActivityMainBinding
+import com.facebook.FacebookSdk
+import com.facebook.FacebookSdk.*
+import com.facebook.appevents.AppEventsLogger
+import com.facebook.login.LoginManager
+import kotlinx.android.synthetic.main.fragment_first.*
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -55,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 putBoolean("LOGGED_IN", false)
             }.apply()
 
-            Toast.makeText(this, "User logged out!", Toast.LENGTH_LONG).show()
+            LoginManager.getInstance().logOut()
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
