@@ -37,7 +37,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
-                R.id.login -> Toast.makeText(applicationContext, "login", Toast.LENGTH_SHORT).show()
+                R.id.login -> {
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                }
             }
 
             true
