@@ -12,9 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.community_basket.R
 import com.example.community_basket.model.Product
 import com.example.community_basket.viewmodel.ProductViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_products_add.*
 import kotlinx.android.synthetic.main.fragment_products_add.view.*
 import kotlinx.android.synthetic.main.fragment_second.*
+import java.lang.StringBuilder
 
 
 class FragmentProductsAdd : Fragment() {
@@ -54,10 +57,11 @@ class FragmentProductsAdd : Fragment() {
                 resources.getIdentifier(imageId, "drawable", context?.packageName)
             )
 
-            // add data to the database
+            // add data to the local database
             mProductViewModel.addProduct(product)
 
-            Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
+            // add data to Firebase
+            addToFirebase(name, location, price.toFloat(), unit, imageId)
 
             findNavController().navigate(R.id.action_fragmentProductsAdd_to_fragmentProductsList)
         } else {
@@ -73,7 +77,33 @@ class FragmentProductsAdd : Fragment() {
         imageId: String
     ): Boolean {
         return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(location) || TextUtils.isEmpty(unit) || TextUtils.isEmpty(
-            price) || TextUtils.isEmpty(imageId))
+            price
+        ) || TextUtils.isEmpty(imageId))
     }
 
+    private fun addToFirebase(
+        name: String,
+        location: String,
+        price: Float,
+        unit: String,
+        imageId: String
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        val product: MutableMap<String, Any?> = HashMap()
+
+        product["name"] = name
+        product["location"] = location
+        product["price"] = price
+        product["unit"] = unit
+        product["imageId"] = imageId
+
+        db.collection("products")
+            .add(product)
+            .addOnSuccessListener {
+                Toast.makeText(context, "Product added successfully", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Failed to add", Toast.LENGTH_LONG).show()
+            }
+    }
 }

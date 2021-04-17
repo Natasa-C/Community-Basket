@@ -55,12 +55,6 @@ class MarketAdapter: RecyclerView.Adapter<MarketAdapter.ProductViewHolder>() {
                     image
                 )
             )
-
-            layout.setOnClickListener {
-                val action =
-                    FragmentProductsListDirections.actionFragmentProductsListToFragmentProductsUpdate2(item)
-                itemView.findNavController().navigate(action)
-            }
         }
 
     }
