@@ -58,10 +58,7 @@ class FragmentProductsAdd : Fragment() {
             )
 
             // add data to the local database
-            mProductViewModel.addProduct(product)
-
-            // add data to Firebase
-            addToFirebase(name, location, price.toFloat(), unit, imageId)
+            mProductViewModel.addProduct(product, imageId)
 
             findNavController().navigate(R.id.action_fragmentProductsAdd_to_fragmentProductsList)
         } else {
@@ -79,31 +76,5 @@ class FragmentProductsAdd : Fragment() {
         return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(location) || TextUtils.isEmpty(unit) || TextUtils.isEmpty(
             price
         ) || TextUtils.isEmpty(imageId))
-    }
-
-    private fun addToFirebase(
-        name: String,
-        location: String,
-        price: Float,
-        unit: String,
-        imageId: String
-    ) {
-        val db = FirebaseFirestore.getInstance()
-        val product: MutableMap<String, Any?> = HashMap()
-
-        product["name"] = name
-        product["location"] = location
-        product["price"] = price
-        product["unit"] = unit
-        product["imageId"] = imageId
-
-        db.collection("products")
-            .add(product)
-            .addOnSuccessListener {
-                Toast.makeText(context, "Product added successfully", Toast.LENGTH_LONG).show()
-            }
-            .addOnFailureListener {
-                Toast.makeText(context, "Failed to add", Toast.LENGTH_LONG).show()
-            }
     }
 }

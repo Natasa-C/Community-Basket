@@ -7,8 +7,8 @@ import com.example.community_basket.model.Product
 class ProductRepository(private val productDao: ProductDao) {
     val readAllData: LiveData<List<Product>> = productDao.readAllData()
 
-    suspend fun addProduct(product: Product) {
-        productDao.addProduct(product)
+    suspend fun addProduct(product: Product) : Long {
+        return productDao.addProduct(product)
     }
 
     suspend fun updateProduct(product: Product) {

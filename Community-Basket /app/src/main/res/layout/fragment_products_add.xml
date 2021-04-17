@@ -67,7 +67,8 @@
         android:layout_marginTop="5sp"
         android:layout_marginBottom="5sp"
         android:layout_gravity="center_horizontal"
-        android:hint="iv_unknown" />
+        android:hint="iv_unknown"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"/>
 
     <Button
         android:id="@+id/add_product_button"

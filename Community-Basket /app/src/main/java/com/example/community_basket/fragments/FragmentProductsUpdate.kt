@@ -71,7 +71,7 @@ class FragmentProductsUpdate : Fragment() {
             )
 
             // update current product in the database
-            mProductViewModel.updateProduct(updatedProduct)
+            mProductViewModel.updateProduct(updatedProduct, imageId)
 
             Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_LONG).show()
 

@@ -40,10 +40,9 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
 
         fun bind(item: Product) {
             var image = R.drawable.iv_unknown
-            if (item.imageId.toString() != "0") {
+            if (item.imageId != 0) {
                 image = item.imageId!!
             }
-
 
             productName.text = item.name
             productLocation.text = item.location
@@ -56,13 +55,7 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
                 )
             )
 
-//            to see how items are recycled
-//            if(position == 0){
-//                layout.setBackgroundColor(Color.YELLOW)
-//            }
-
             layout.setOnClickListener {
-//                itemClickListener.onItemClick(item)
                 val action =
                     FragmentProductsListDirections.actionFragmentProductsListToFragmentProductsUpdate2(item)
                 itemView.findNavController().navigate(action)

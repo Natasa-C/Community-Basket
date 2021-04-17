@@ -7,7 +7,7 @@ import com.example.community_basket.model.Product
 @Dao
 interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addProduct(product: Product)
+    suspend fun addProduct(product: Product) : Long
 
     @Update
     suspend fun updateProduct(product: Product)
