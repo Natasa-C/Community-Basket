@@ -1,6 +1,7 @@
 package com.example.community_basket.activities
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.community_basket.R
 import com.example.community_basket.databinding.ActivityMarketBinding
 import com.example.community_basket.fragments.FragmentMarketList
+import com.facebook.login.LoginManager
 
 
 class MarketActivity : AppCompatActivity() {
@@ -43,7 +45,17 @@ class MarketActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
-                R.id.login -> {
+                R.id.logout -> {
+                    val sharedPreferences =
+                        getSharedPreferences("AuthenticationPrefs", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+
+                    editor.apply {
+                        putBoolean("LOGGED_IN", false)
+                    }.apply()
+
+                    LoginManager.getInstance().logOut()
+
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 }
@@ -63,9 +75,7 @@ class MarketActivity : AppCompatActivity() {
                 .add(R.id.market_list_fragment, FragmentMarketList::class.java, null)
                 .commit()
         }
-
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {

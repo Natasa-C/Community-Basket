@@ -44,8 +44,23 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
-                R.id.login -> {
+                R.id.logout -> {
+                    val sharedPreferences =
+                        getSharedPreferences("AuthenticationPrefs", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+
+                    editor.apply {
+                        putBoolean("LOGGED_IN", false)
+                    }.apply()
+
+                    LoginManager.getInstance().logOut()
+
                     val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.market -> {
+                    val intent = Intent(this, MarketActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -54,7 +69,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btLogout.setOnClickListener() {
-            val sharedPreferences = getSharedPreferences("AuthenticationPrefs", Context.MODE_PRIVATE)
+            val sharedPreferences =
+                getSharedPreferences("AuthenticationPrefs", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
 
             editor.apply {
@@ -66,17 +82,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
-//        binding.btActivitySecond.setOnClickListener {
-//            gotoSecondApp()
-//        }
-//
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .setReorderingAllowed(true)
-//                .add(R.id.fragment_container, FirstFragment::class.java, null)
-//                .commit()
-//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
