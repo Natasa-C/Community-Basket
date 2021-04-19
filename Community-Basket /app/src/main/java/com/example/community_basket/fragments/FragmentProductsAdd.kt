@@ -1,18 +1,26 @@
 package com.example.community_basket.fragments
 
+import android.app.PendingIntent
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.community_basket.R
+import com.example.community_basket.activities.NotificationActivity
 import com.example.community_basket.model.Product
 import com.example.community_basket.viewmodel.ProductViewModel
-import com.google.firebase.firestore.FirebaseFirestore
+import com.facebook.FacebookSdk.getApplicationContext
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_products_add.*
 import kotlinx.android.synthetic.main.fragment_products_add.view.*
@@ -29,14 +37,18 @@ class FragmentProductsAdd : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_products_add, container, false)
+        return inflater.inflate(R.layout.fragment_products_add, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
         view.add_product_button.setOnClickListener {
             insertDataToDatabase()
         }
 
-        return view
+        attachObservers()
     }
 
     private fun insertDataToDatabase() {
@@ -47,7 +59,6 @@ class FragmentProductsAdd : Fragment() {
         val imageId = et_product_image.text.toString()
 
         if (inputCheck(name, location, price, unit, imageId)) {
-            // create Product Object
             val product = Product(
                 0,
                 name,
@@ -56,14 +67,44 @@ class FragmentProductsAdd : Fragment() {
                 unit,
                 resources.getIdentifier(imageId, "drawable", context?.packageName)
             )
-
-            // add data to the local database
             mProductViewModel.addProduct(product, imageId)
-
-            findNavController().navigate(R.id.action_fragmentProductsAdd_to_fragmentProductsList)
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun attachObservers() {
+        mProductViewModel.responseInsert.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, "Success to add", Toast.LENGTH_LONG).show()
+                sendNotification()
+                findNavController().navigate(R.id.action_fragmentProductsAdd_to_fragmentProductsList)
+            }
+            else
+                Toast.makeText(context, "Failed to add", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun sendNotification() {
+        val CHANNEL_ID : String = "MARKET-CHANNEL"
+        val notificationManager = NotificationManagerCompat.from(getApplicationContext())
+
+        val intent = Intent (getActivity(), NotificationActivity::class.java)
+        intent.putExtra("message", "Produsele au fost adaugate in market")
+        val contentIntent = PendingIntent.getActivity(getActivity(), 0, intent, 0)
+
+        var builder= NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_message)
+            .setContentTitle("Community Basket notification")
+            .setContentText("Produsele au fost adaugate in market")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+            .setAutoCancel(true)
+            .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
+            .setLights(Color.GREEN, 3000, 3000)
+            .setContentIntent(contentIntent)
+
+        notificationManager.notify(1, builder.build())
     }
 
     private fun inputCheck(

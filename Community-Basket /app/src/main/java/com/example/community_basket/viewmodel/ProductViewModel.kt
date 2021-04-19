@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class ProductViewModel(application: Application) : AndroidViewModel(application) {
     val readAllData: LiveData<List<Product>>
     private val repository: ProductRepository
-    val responseInsert = MutableLiveData<Boolean>()
+    var responseInsert = MutableLiveData<Boolean>()
 
     init {
         val productDao = AppDatabase.getDatabase(
@@ -29,7 +29,7 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun addProduct(product: Product, imageId: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val roomId = repository.addProduct(product)
 
             // add in Firestore

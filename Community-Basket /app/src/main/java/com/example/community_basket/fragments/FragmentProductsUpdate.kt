@@ -38,8 +38,8 @@ class FragmentProductsUpdate : Fragment() {
 //        can be replaced after removing images without background img id
         var imgName = args.currentProduct.imageId.toString()
 
-        if (args.currentProduct.imageId != 0)
-            imgName = resources.getResourceEntryName(args.currentProduct.imageId!!);
+//        if (args.currentProduct.imageId != 0)
+//            imgName = resources.getResourceEntryName(args.currentProduct.imageId!!);
         view.et_update_product_image.setText(imgName)
 
         view.update_product_button.setOnClickListener {
