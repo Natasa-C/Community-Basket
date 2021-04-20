@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -27,7 +29,12 @@ class FragmentProductsUpdate : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_products_update, container, false)
+        return inflater.inflate(R.layout.fragment_products_update, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
 
         view.et_update_product_name.setText(args.currentProduct.name)
@@ -35,29 +42,44 @@ class FragmentProductsUpdate : Fragment() {
         view.et_update_product_price.setText(args.currentProduct.price.toString())
         view.et_update_product_unit.setText(args.currentProduct.unit)
 
-//        can be replaced after removing images without background img id
-        var imgName = args.currentProduct.imageId.toString()
+        var spinner : Spinner = view.update_spinner_product_category
+        var categoryAdapter : ArrayAdapter<String>? = this.activity?.let {
+            ArrayAdapter<String> (
+                it,
+                android.R.layout.simple_list_item_1,
+                resources.getStringArray(R.array.product_categories))
+        }
 
-//        if (args.currentProduct.imageId != 0)
-//            imgName = resources.getResourceEntryName(args.currentProduct.imageId!!);
-        view.et_update_product_image.setText(imgName)
+        if (categoryAdapter != null) {
+            categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = categoryAdapter
+        }
 
         view.update_product_button.setOnClickListener {
-            updateItem()
+            val category: String = spinner.selectedItem.toString()
+            updateItem(category)
         }
 
         // Add menu
         setHasOptionsMenu(true)
-
-        return view
     }
 
-    private fun updateItem() {
+    private fun updateItem(category : String) {
         val name = et_update_product_name.text.toString()
         val location = et_update_product_location.text.toString()
         val price = et_update_product_price.text.toString()
         val unit = et_update_product_unit.text.toString()
-        val imageId = et_update_product_image.text.toString()
+
+        var imageId : String = when (category) {
+            "fruits" -> "fruits2"
+            "vegetables" -> "vegetables"
+            "nuts" -> "nuts"
+            "dairy products" -> "dairy2"
+            "meats" -> "meat"
+            "eggs" -> "eggs"
+            "others" -> "iv_unknown"
+            else -> "iv_unknown"
+        }
 
         if (inputCheck(name, location, price, unit, imageId)) {
             // create Product Object

@@ -45,12 +45,12 @@ class MarketAdapter: RecyclerView.Adapter<MarketAdapter.ProductViewHolder>() {
             productLocation.text = item.location
             productPrice.text = item.price.toString()
             productUnit.text = "lei/" + item.unit
-//            movieImage.setImageDrawable(
-//                ContextCompat.getDrawable(
-//                    movieImage.context,
-//                    image
-//                )
-//            )
+            movieImage.setImageDrawable(
+                ContextCompat.getDrawable(
+                    movieImage.context,
+                    image
+                )
+            )
         }
 
     }

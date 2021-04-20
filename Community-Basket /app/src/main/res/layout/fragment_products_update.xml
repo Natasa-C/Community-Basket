@@ -11,8 +11,8 @@
         android:id="@+id/et_update_product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:height="60sp"
+        android:textSize="17.5sp"
+        android:height="40sp"
         android:layout_marginTop="25sp"
         android:layout_marginBottom="5sp"
         android:layout_gravity="center_horizontal"
@@ -25,13 +25,12 @@
         android:id="@+id/et_update_product_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:height="60sp"
+        android:textSize="17.5sp"
+        android:height="40sp"
         android:layout_marginTop="5sp"
         android:layout_marginBottom="5sp"
         android:layout_gravity="center_horizontal"
         android:hint="location"
-
         android:maxLength="15"
         android:maxLines="1"
         android:maxWidth="140sp"/>
@@ -40,8 +39,8 @@
         android:id="@+id/et_update_product_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:height="60sp"
+        android:textSize="17.5sp"
+        android:height="40sp"
         android:layout_marginTop="5sp"
         android:layout_marginBottom="5sp"
         android:layout_gravity="center_horizontal"
@@ -51,33 +50,26 @@
         android:id="@+id/et_update_product_unit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:height="60sp"
+        android:textSize="17.5sp"
+        android:height="40sp"
         android:layout_marginTop="5sp"
         android:layout_marginBottom="5sp"
         android:layout_gravity="center_horizontal"
         android:hint="unit (buc, kg, leg)" />
 
-    <EditText
-        android:id="@+id/et_update_product_image"
+    <Spinner
+        android:id="@+id/update_spinner_product_category"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:height="60sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginBottom="5sp"
-        android:layout_gravity="center_horizontal"
-        android:hint="iv_picture"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"/>
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/update_product_button"
-        android:layout_width="273dp"
+        android:layout_width="220sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32sp"
+        android:layout_marginTop="5sp"
         android:layout_gravity="center"
-        android:text="UPDATE"
-        android:textSize="25sp"
+        android:text="Update"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
 </LinearLayout>

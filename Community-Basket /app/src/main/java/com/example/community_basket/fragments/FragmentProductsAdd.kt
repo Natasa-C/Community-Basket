@@ -91,15 +91,15 @@ class FragmentProductsAdd : Fragment() {
         val price = et_product_price.text.toString()
         val unit = et_product_unit.text.toString()
 
-        var imageId : String
-        imageId = when (category) {
-            "fruits" -> "1"
-            "vegetables" -> "2"
-            "nuts" -> "3"
-            "dairy products" -> "4"
-            "meats" -> "5"
-            "eggs" -> "6"
-            else -> "unknown"
+        var imageId : String = when (category) {
+            "fruits" -> "fruits2"
+            "vegetables" -> "vegetables"
+            "nuts" -> "nuts"
+            "dairy products" -> "dairy2"
+            "meats" -> "meat"
+            "eggs" -> "eggs"
+            "others" -> "iv_unknown"
+            else -> "iv_unknown"
         }
 
         if (inputCheck(name, location, price, unit, imageId)) {

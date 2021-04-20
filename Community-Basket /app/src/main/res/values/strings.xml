@@ -27,5 +27,6 @@
         <item>dairy products</item>
         <item>meats</item>
         <item>eggs</item>
+        <item>others</item>
     </string-array>
 </resources>
