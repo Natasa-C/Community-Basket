@@ -20,4 +20,12 @@
     // Facebook login
     <string name="facebook_app_id">747163672611360</string>
     <string name="fb_login_protocol_scheme">fb747163672611360</string>
+    <string-array name="product_categories">
+        <item>fruits</item>
+        <item>vegetables</item>
+        <item>nuts</item>
+        <item>dairy products</item>
+        <item>meats</item>
+        <item>eggs</item>
+    </string-array>
 </resources>

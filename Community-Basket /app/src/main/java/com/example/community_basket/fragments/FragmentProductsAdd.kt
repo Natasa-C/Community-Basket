@@ -2,16 +2,20 @@ package com.example.community_basket.fragments
 
 import android.app.PendingIntent
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -25,7 +29,6 @@ import kotlinx.android.synthetic.main.fragment_products_add.view.*
 
 
 class FragmentProductsAdd : Fragment() {
-
     private lateinit var mProductViewModel: ProductViewModel
     private lateinit var currentProduct : Product
 
@@ -41,19 +44,63 @@ class FragmentProductsAdd : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+
+        view.bt_open_camera.setOnClickListener() {
+            makePhoto()
+        }
+
+        var spinner : Spinner = view.spinner_product_category
+        var categoryAdapter : ArrayAdapter<String>? = this.activity?.let {
+            ArrayAdapter<String> (
+                it,
+                android.R.layout.simple_list_item_1,
+                resources.getStringArray(R.array.product_categories))
+        }
+
+        if (categoryAdapter != null) {
+            categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = categoryAdapter
+        }
+
         view.add_product_button.setOnClickListener {
-            insertDataToDatabase()
+            val category: String = spinner.selectedItem.toString()
+            insertDataToDatabase(category)
         }
 
         attachObservers()
     }
 
-    private fun insertDataToDatabase() {
+    private fun makePhoto() {
+        Toast.makeText(requireContext(), "facem pozik?", Toast.LENGTH_LONG).show()
+        var intent : Intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, 100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100) {
+            var capturedImage : Bitmap = data?.getExtras()?.get("data") as Bitmap
+            view?.camera_img?.setImageBitmap(capturedImage)
+        }
+    }
+
+    private fun insertDataToDatabase(category : String) {
         val name = et_product_name.text.toString()
         val location = et_product_location.text.toString()
         val price = et_product_price.text.toString()
         val unit = et_product_unit.text.toString()
-        val imageId = et_product_image.text.toString()
+
+        var imageId : String
+        imageId = when (category) {
+            "fruits" -> "1"
+            "vegetables" -> "2"
+            "nuts" -> "3"
+            "dairy products" -> "4"
+            "meats" -> "5"
+            "eggs" -> "6"
+            else -> "unknown"
+        }
 
         if (inputCheck(name, location, price, unit, imageId)) {
             currentProduct = Product(
