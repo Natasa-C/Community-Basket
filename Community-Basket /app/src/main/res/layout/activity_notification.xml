@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Detalii produs"
             android:textSize="15sp"
+            android:padding="20sp"
             android:gravity="center"/>
 
         <Button

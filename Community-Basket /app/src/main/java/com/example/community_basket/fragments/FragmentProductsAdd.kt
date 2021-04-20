@@ -71,7 +71,6 @@ class FragmentProductsAdd : Fragment() {
     }
 
     private fun makePhoto() {
-        Toast.makeText(requireContext(), "facem pozik?", Toast.LENGTH_LONG).show()
         var intent : Intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 100)
     }

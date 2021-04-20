@@ -15,40 +15,11 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/bt_activity_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:text="@string/go_to_second_activity"
-            android:textSize="15sp" />
-
-        <Button
-            android:id="@+id/bt_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:text="@string/logout"
-            android:textSize="15sp" />
-
-        <Button
-            android:id="@+id/bt_notify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notify me" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/bt_open_camera"
-            android:text="open camera"/>
-
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:id="@+id/camera_img"/>
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/farmers_man_and_woman_holding_baskets_with_fresh_vector_18459671" />
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

@@ -43,8 +43,6 @@ class RegisterActivity : AppCompatActivity() {
                 putString("PASSWORD_KEY", password)
             }.apply()
 
-            Toast.makeText(this, "Registered $email $password", Toast.LENGTH_LONG).show()
-
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

@@ -84,19 +84,6 @@ class LoginActivity : AppCompatActivity() {
         graphRequest.executeAsync()
     }
 
-//    var accesTokenTracker: AccessTokenTracker = object : AccessTokenTracker() {
-//        override fun onCurrentAccessTokenChanged(oldAccessToken: AccessToken, currentAccessToken: AccessToken) {
-//            if (currentAccessToken == null) {
-//                LoginManager.getInstance().logOut()
-//            }
-//        }
-//    }
-//
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        accesTokenTracker.startTracking()
-//    }
-
     private fun logIn() {
         val emailLogin = binding.email.text.toString()
         val passwordLogin = binding.password.text.toString()
@@ -111,8 +98,6 @@ class LoginActivity : AppCompatActivity() {
             editor.apply {
                 putBoolean("LOGGED_IN", true)
             }.apply()
-
-            Toast.makeText(this, "Logged in $email $password", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
