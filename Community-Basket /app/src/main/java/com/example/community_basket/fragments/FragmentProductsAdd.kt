@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,16 +20,14 @@ import com.example.community_basket.activities.NotificationActivity
 import com.example.community_basket.model.Product
 import com.example.community_basket.viewmodel.ProductViewModel
 import com.facebook.FacebookSdk.getApplicationContext
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_products_add.*
 import kotlinx.android.synthetic.main.fragment_products_add.view.*
-import kotlinx.android.synthetic.main.fragment_second.*
-import java.lang.StringBuilder
 
 
 class FragmentProductsAdd : Fragment() {
 
     private lateinit var mProductViewModel: ProductViewModel
+    private lateinit var currentProduct : Product
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +56,7 @@ class FragmentProductsAdd : Fragment() {
         val imageId = et_product_image.text.toString()
 
         if (inputCheck(name, location, price, unit, imageId)) {
-            val product = Product(
+            currentProduct = Product(
                 0,
                 name,
                 location,
@@ -67,7 +64,7 @@ class FragmentProductsAdd : Fragment() {
                 unit,
                 resources.getIdentifier(imageId, "drawable", context?.packageName)
             )
-            mProductViewModel.addProduct(product, imageId)
+            mProductViewModel.addProduct(currentProduct, imageId)
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_LONG).show()
         }
@@ -90,13 +87,13 @@ class FragmentProductsAdd : Fragment() {
         val notificationManager = NotificationManagerCompat.from(getApplicationContext())
 
         val intent = Intent (getActivity(), NotificationActivity::class.java)
-        intent.putExtra("message", "Produsele au fost adaugate in market")
-        val contentIntent = PendingIntent.getActivity(getActivity(), 0, intent, 0)
+        intent.putExtra("product", currentProduct)
+        val contentIntent = PendingIntent.getActivity(getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         var builder= NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_message)
             .setContentTitle("Community Basket notification")
-            .setContentText("Produsele au fost adaugate in market")
+            .setContentText("Produsul a fost adaugat in Market!")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setCategory(NotificationCompat.CATEGORY_MESSAGE)
             .setAutoCancel(true)

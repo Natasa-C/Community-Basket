@@ -1,10 +1,12 @@
 package com.example.community_basket.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.community_basket.R
-import com.example.community_basket.databinding.ActivityMainBinding
 import com.example.community_basket.databinding.ActivityNotificationBinding
+import com.example.community_basket.model.Product
+
 
 class NotificationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotificationBinding
@@ -15,8 +17,23 @@ class NotificationActivity : AppCompatActivity() {
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var message: String? = getIntent().getStringExtra("message")
+        if (intent.hasExtra("product")) {
+            var product : Product? = intent.getParcelableExtra("product")
+            if (product != null) {
+                val successfullyInsertionMessage : String = "Produsul " + product.name + " a fost adaugat in Market la pretul de " + product.price.toString() + " lei pe " + product.unit
+                binding.textView.setText(successfullyInsertionMessage)
 
-        binding.textView.setText(message)
+                binding.btOpenMarket.setOnClickListener {
+                    val intent : Intent = Intent (this, MarketActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            else {
+                Log.d("product", "Extra is null!")
+            }
+        }
+        else {
+            Log.d("product", "Intent does not have extra!")
+        }
     }
 }

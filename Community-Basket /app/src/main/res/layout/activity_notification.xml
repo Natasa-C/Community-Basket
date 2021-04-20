@@ -5,20 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="187dp"
-        tools:layout_editor_absoluteY="222dp">
-
+        tools:layout_editor_absoluteY="222dp"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="ceva aici"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalii produs"
             android:textSize="15sp"
             android:gravity="center"/>
-    </RelativeLayout>
+
+        <Button
+            android:id="@+id/bt_open_market"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open market" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
