@@ -3,16 +3,22 @@ package com.example.community_basket.activities
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.example.community_basket.R
 import com.example.community_basket.databinding.ActivityMainBinding
 import com.facebook.login.LoginManager
+import java.util.jar.Manifest
 
 
 class MainActivity : AppCompatActivity() {
@@ -89,7 +95,31 @@ class MainActivity : AppCompatActivity() {
         binding.btNotify.setOnClickListener() {
             sendNotification()
         }
+
+        // CAMERA!!!!!!!
+        if (ContextCompat.checkSelfPermission(this@MainActivity, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this@MainActivity,
+                Array<String?>(1) { android.Manifest.permission.CAMERA },
+                100)
+        }
+
+        binding.btOpenCamera.setOnClickListener() {
+            var intent : Intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, 100)
+        }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100) {
+            var capturedImage : Bitmap = data?.getExtras()?.get("data") as Bitmap
+
+            binding.cameraImg.setImageBitmap(capturedImage)
+        }
+    }
+
 
     private fun sendNotification() {
         val intent = Intent(this, NotificationActivity::class.java)
